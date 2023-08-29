@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    <input class="input" type="text" placeholder="new todo">
-    <button class="button">Add</button>
-    <ul class="containerTodo"></ul>
-    <button class="clearButton">clear all</button>
-    <script src="app.js"></script>
-</body>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="todolist">
+      <h1 class="header">Todo List</h1>
+      <div>
+        <input class="input" type="text" placeholder="Write Todo" />
+        <button class="button addTodo">Add Todo</button>
+        <button class="button remove">Remove All</button>˝
+      </div>
+      <div class="container"></div>
+      <script src="app.js"></script>
+    </div>
+  </body>
 </html>

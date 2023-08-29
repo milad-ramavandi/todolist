@@ -1,7 +1,7 @@
 const inputElement = document.querySelector(".input") as HTMLInputElement;
-const buttonElement = document.querySelector(".button") as HTMLButtonElement;
-const ulElement = document.querySelector(".containerTodo") as HTMLUListElement;
-const clearButton = document.querySelector(".clearButton") as HTMLButtonElement;
+const buttonElement = document.querySelector(".addTodo") as HTMLButtonElement;
+const divElement = document.querySelector(".container") as HTMLDivElement;
+const clearButton = document.querySelector(".remove") as HTMLButtonElement;
 
 interface Todo {
   id: string;
@@ -23,16 +23,21 @@ buttonElement.onclick = function createTodo(e: Event) {
 };
 
 function addTodo(todo: Todo) {
-  ulElement.insertAdjacentHTML(
+  divElement.insertAdjacentHTML(
     "beforeend",
-    `<li>${todo.title} <button onclick="removeTodo('${todo.id}')">remove</button></li>`
+    `<div class="todo">
+    ${todo.title} 
+    <div class="buttons">
+    <button class="remove button" onclick="removeTodo('${todo.id}')">Delete</button>
+    </div>
+    </div>`
   );
 }
 
 function removeTodo(todoID: string) {
   todolist = todolist.filter((item) => item.id !== todoID);
   localStorage.setItem("todolist", JSON.stringify(todolist));
-  ulElement.innerHTML = "";
+  divElement.innerHTML = "";
   todolist.map((item) => addTodo(item));
 }
 
@@ -40,13 +45,12 @@ clearButton.onclick = function clearAll(e: Event) {
   e.preventDefault();
   todolist = [];
   localStorage.setItem("todolist", JSON.stringify(todolist));
-  ulElement.innerHTML = "";
+  divElement.innerHTML = "";
 };
 
 window.addEventListener("DOMContentLoaded", () =>
   todolist.map((item) => addTodo(item))
 );
-
 
 // second method
 
@@ -54,8 +58,6 @@ window.addEventListener("DOMContentLoaded", () =>
 // const buttonAddTodo = document.querySelector('.buttonAddTodo') as HTMLButtonElement;
 // const container = document.querySelector('.container') as HTMLUListElement;
 // const buttonClearAll = document.querySelector('.buttonClearAll') as HTMLButtonElement;
-
-
 
 // interface Todo {
 //     id:string;
@@ -65,7 +67,7 @@ window.addEventListener("DOMContentLoaded", () =>
 // let todos:Todo[]= JSON.parse(localStorage.getItem('todolist') || "[]");
 
 // function createTodo() {
-    
+
 //     const todo:Todo = {
 //         id:crypto.randomUUID(),
 //         title:inputElement.value
